@@ -26,5 +26,8 @@
         "@types/react-dom": "^19.3.0",
         "@vitejs/plugin-react": "^6.1.1",
         "vitest": "^5.0.0"
+    },
+    "allowScripts": {
+        "fsevents@2.3.3": true
     }
 }
