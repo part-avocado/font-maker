@@ -1,0 +1,22 @@
+{
+    "name": "font maker",
+    "version": "0.0.1",
+    "private": true,
+    "engines": {
+        "node": ">=22.13.0"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+        "test": "vitest"
+    },
+    "dependencies": {
+        "fflate": "^0.8.3",
+        "lucide-react": "^1.38.0",
+        "opentype.js": "^2.0.0",
+        "react":"19.2.6",
+        "react-dom": "19.2.6"
+    }
+}
