@@ -5,7 +5,7 @@ on:
 
 concurrency:
   group: bob-${{github.ref}}
-  cancel-in-progree: true
+  cancel-in-progress: true
 
 permissions:
   contents: write
