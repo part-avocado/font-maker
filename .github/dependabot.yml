@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystemn: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystemn: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
