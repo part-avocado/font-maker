@@ -16,7 +16,15 @@
         "fflate": "^0.8.3",
         "lucide-react": "^1.38.0",
         "opentype.js": "^2.0.0",
-        "react":"19.2.6",
-        "react-dom": "19.2.6"
+        "react": "^19.2.6",
+        "react-dom": "^19.2.6",
+        "typescript": "^7.0.2"
+    },
+    "devDependencies": {
+        "@types/node": "^22.20.2",
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "@vitejs/plugin-react": "^6.1.1",
+        "vitest": "^4.1.11"
     }
 }
