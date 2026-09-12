@@ -5,13 +5,14 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Environment
+      - name: Clone Repository
         uses: actions/checkout@v4
 
+      - name: Setup Runner
         uses: actions/setup-node@v4
         with:
           node-cache: 'npm'
-          
+
       - name: Install Packages
         run: npm ci
 
