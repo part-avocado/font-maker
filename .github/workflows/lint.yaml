@@ -11,10 +11,10 @@ jobs:
       - name: Setup Runner
         uses: actions/setup-node@v4
         with:
-          node-cache: 'npm'
+          cache: 'npm'
 
       - name: Install Packages
-        run: npm ci && npm install
+        run: npm ci
 
       - name: Lint
         run: npm run lint
