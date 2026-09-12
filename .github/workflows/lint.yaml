@@ -12,6 +12,7 @@ jobs:
         with:
           node-cache: 'npm'
           
+      - name: Install Packages
         run: npm ci
 
       - name: Lint
