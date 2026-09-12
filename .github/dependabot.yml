@@ -1,11 +1,11 @@
 version: 2
 updates:
-  - package-ecosystemn: "github-actions"
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
 
-  - package-ecosystemn: "npm"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
