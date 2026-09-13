@@ -78,3 +78,7 @@ describe('guideLinePos', () => {
 })
 
 // copilot fix end
+
+describe('guideForCharacter', () => {
+    
+})
