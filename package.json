@@ -10,7 +10,7 @@
         "build": "tsc --noEmit && vite build",
         "preview": "vite preview",
         "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-        "test": "vitest"
+        "test": "vitest run"
     },
     "dependencies": {
         "fflate": "^0.8.3",
