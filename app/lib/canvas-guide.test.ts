@@ -66,11 +66,15 @@ describe('guides', () => {
     })
 })
 
+// copilot fix start
+
 describe('guideLinePos', () => {
     it('renders top-edge on their own row', () => {
-        const mertix = guide(defaultGuides(30))
-        guides
-            .filter((guides) => guides.id === 'baseline' || guides.id === 'descender')
-            .forEach((guides) => expect(guideLinePos(guides)).toBe(guide.row +1))
+        const metrics = guide(defaultGuides(30))
+        metrics
+            .filter((guide) => guide.id === 'baseline' || guide.id === 'descender')
+            .forEach((guide) => expect(guideLinePos(guide)).toBe(guide.row + 1))
     })
 })
+
+// copilot fix end
