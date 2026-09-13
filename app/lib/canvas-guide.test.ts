@@ -80,5 +80,35 @@ describe('guideLinePos', () => {
 // copilot fix end
 
 describe('guideForCharacter', () => {
+    it('uppercase letters align correctly to cap height and baseline', () => {
+        expect(guideForCharacter('A')).toEqual(['capHeight', 'baseline'])
+    })
+    it('tall, lowercase letters correctly align to ascender and baseline', () => {
+        expect(guideForCharacter('b')).toEqual(['ascender', 'baseline'])
+    })
+    it('descender letters aligned to x-height and descender', () => {
+        expect(guideForCharacter('g')).toEqual(['xHeight', 'baseline'])
+    })
+    it('numerical digits align similar to oppercase letters', () => {
+        expect(guideForCharacter('5')).toEqual(['capHeight', 'baseline'])
+    })
+    
+    it('symbols fall back to baseline', () => {
+        expect(guideForCharacter('#')).toEqual(['baseline'])
+    })
+});
 
+describe('guideStates', () => {
+    it('warns when baseline sits at bottom edge', () => {
+        const metrix = { ascender: 0, capHeight: 1, xHeight:2, baseline: 9, descender: 9}
+        expect(guideStates(metrix, 10)).toContain('Baseline coincides with bottom edge.')
+    })
+
+    it('warns when cap heigh and x-height conside', () => {
+        const metrix = {ascender: 0, capHeight:5, xHeight:5, baseline: 8, descender:9 }
+        expect(guideStates(metrix, 10)).toContain('Cap Height and X-Height coincide.')
+    })
+    it('has no warnings for a well spaced set', () => {
+        expect(guideStates(defaultGuides(30), 30)).toEqual([])
+    })
 })
