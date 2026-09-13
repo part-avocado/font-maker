@@ -1,19 +1,19 @@
 import {describe,expect,it} from 'vitest';
-import { clampGuides, defaultGuides, guideLinePos, guideForCharacter, guides, guideStates, normaliseGuides } from './canvas-guide';
+import { clampGuides, defaultGuides, guideLinePos, guideForCharacter, guides, guideStates, normaliseGuides, guide } from './canvas-guide';
 import { createCipheriv } from 'crypto';
 
 describe('defaultGuides', () => {
     it('produces metrics in ascending order', () => {
-    const guides = defaultGuides(30);
-    expect(guides.ascender).toBeLessThanOrEqual(guides.capHeight)
-    expect(guides.capHeight).toBeLessThanOrEqual(guides.xHeight)
-    expect(guides.xHeight).toBeLessThanOrEqual(guides.baseline)
-    expect(guides.baseline).toBeLessThanOrEqual(guides.descender);
+    const metrix = defaultGuides(30);
+    expect(metrix.ascender).toBeLessThanOrEqual(metrix.capHeight)
+    expect(metrix.capHeight).toBeLessThanOrEqual(metrix.xHeight)
+    expect(metrix.xHeight).toBeLessThanOrEqual(metrix.baseline)
+    expect(metrix.baseline).toBeLessThanOrEqual(metrix.descender);
     });
  
     it('never produces a negative row given small grid height', () => {
-        const guides = defaultGuides(1);
-        Object.values(guides).forEach((value) => expect(value).toBeGreaterThanOrEqual(0));
+        const metrix = defaultGuides(1);
+        Object.values(metrix).forEach((value) => expect(value).toBeGreaterThanOrEqual(0));
     });
 });
 
@@ -27,8 +27,8 @@ describe('clampGuides', () => {
 
 describe('normaliseGuides', () => {
     it('retains pre-organised guides', () => {
-        const guides = {ascender: 1, capHeight: 3, xHeight: 10, baseline: 20, descender: 24}
-        expect(normaliseGuides(guides, 30)).toEqual(guides)
+        const metrix = {ascender: 1, capHeight: 3, xHeight: 10, baseline: 20, descender: 24}
+        expect(normaliseGuides(metrix, 30)).toEqual(metrix)
     })
 
     it('reorders guides which are not in order correctly', () => {
@@ -41,14 +41,27 @@ describe('normaliseGuides', () => {
     })
 
     it('clamps all fields to the new height first', () => {
-        const guides = {ascender:1, capHeight: 3, xHeight: 5, baseline: 8, descender: 40};
-        const normalised = normaliseGuides(guides, 10);
+        const metrix = {ascender:1, capHeight: 3, xHeight: 5, baseline: 8, descender: 40};
+        const normalised = normaliseGuides(metrix, 10);
         expect(normalised.descender).toBeLessThanOrEqual(9)
     })
 
     it('is idempotent', () => {
-        const guides = {ascender: 5, capHeight: 8, xHeight: 20, baseline: 15, descender: 25}
-        const once = normaliseGuides(guides, 30)
+        const metrix = {ascender: 5, capHeight: 8, xHeight: 20, baseline: 15, descender: 25}
+        const once = normaliseGuides(metrix, 30)
         expect(normaliseGuides(once, 30)).toEqual(once);
+    })
+})
+
+describe('guides', () => {
+    it('returns exactly 5 guides in order', () => {
+        const metrix = guide(defaultGuides(30));
+        expect(metrix.map((g) => g.id)).toEqual(['ascender', 'capHeight', 'xHeight', 'baseline', 'descender'])
+    })
+
+    it('each guide has the row from input guides', () => {
+        const metrix = defaultGuides(30);
+        const metrics = guide(metrix)
+        metrics.forEach((guide) => expect(guide.row).toBe(metrix[guide.id]))
     })
 })
