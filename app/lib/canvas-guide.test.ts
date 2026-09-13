@@ -66,7 +66,7 @@ describe('guides', () => {
     })
 })
 
-// copilot fix start
+// copilot fix start (I already wrote the code, and gh copilot fixed it)
 
 describe('guideLinePos', () => {
     it('renders top-edge on their own row', () => {
@@ -80,5 +80,5 @@ describe('guideLinePos', () => {
 // copilot fix end
 
 describe('guideForCharacter', () => {
-    
+
 })
