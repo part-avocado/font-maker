@@ -66,6 +66,8 @@ describe('guides', () => {
     })
 })
 
+// copilot fix start
+
 describe('guideLinePos', () => {
     it('renders top-edge on their own row', () => {
         const metrics = guide(defaultGuides(30))
@@ -74,3 +76,5 @@ describe('guideLinePos', () => {
             .forEach((guide) => expect(guideLinePos(guide)).toBe(guide.row + 1))
     })
 })
+
+// copilot fix end
