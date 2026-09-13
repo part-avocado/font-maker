@@ -65,3 +65,12 @@ describe('guides', () => {
         metrics.forEach((guide) => expect(guide.row).toBe(metrix[guide.id]))
     })
 })
+
+describe('guideLinePos', () => {
+    it('renders top-edge on their own row', () => {
+        const mertix = guide(defaultGuides(30))
+        guides
+            .filter((guides) => guides.id === 'baseline' || guides.id === 'descender')
+            .forEach((guides) => expect(guideLinePos(guides)).toBe(guide.row +1))
+    })
+})
