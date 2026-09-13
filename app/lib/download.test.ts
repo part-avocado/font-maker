@@ -23,12 +23,12 @@ describe('download', () => {
         vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:report')
         vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {})
         let observedHref = ''
-        let obseredName = ''
+        let observedName = ''
         vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(function (this:HTMLAnchorElement) {
             observedHref = this.href
             observedName = this.download
         }); download('my-font.svg', blob);
-        expect(obseredName).toBe('my-font.svg')
+        expect(observedName).toBe('my-font.svg')
         expect(observedHref).toBe('blob:report')
         vi.restoreAllMocks()
     })
