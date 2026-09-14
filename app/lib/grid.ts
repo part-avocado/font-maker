@@ -108,3 +108,23 @@ export const missingLetterBox =(width:number, height: number): Grid => {
 };
 
 export const defaultLetter = (width:number, height: number): Record<string, Grid> => Object.fromEntries(chars.map((chars) => [chars, blank(width,height)]))
+
+export const pixFromCanvas = (canvas: HTMLCanvasElement, resolution: number, gridHeight:number): Grid => {
+    const context = canvas.getContext('2d')!;
+    const image = context.getImageData(0,0,canvas.width, canvas.height)
+    const cell = 16
+    return Array.from({length: gridHeight }, (_,y) => 
+        Array.from({length:resolution}, (_, x) => {
+        let dark =0;
+        for (let py = y * cell;py < (y+1) * cell; py++) {
+            for (let px = x* cell; px < (x+1)*cell;px++ ) {
+                const i=(py*canvas.width+px) * 4;
+                // numbers here are computed using Figma (THANK YOU FIGMA I LOVE YOU)
+                const luma=0.2126 * image.data[i]+0.7152 *image.data[i+1 ] + 0.0722 * image.data[i+2 ]
+                if (image.data[i+3 ] > 20 && luma <160) dark++
+            }
+        }
+        return dark > cell * cell * 0.12
+    })
+)
+}
