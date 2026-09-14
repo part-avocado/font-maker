@@ -306,7 +306,7 @@ const accentUC = ['À', 'Á', 'Â', 'Ä', 'Ǎ', 'Æ', 'Ã', 'Å', 'Ā',
     'Ķ', 'Ł', "Ļ", 'Ľ', 'Ñ', 'Ń', 'Ņ', 'Ň', 'Ò', "Ó", 'Ô', 'Ö', "Ǒ", 'Œ', 'Ø', 'Õ', 'Ō',
     'Ř', 'ẞ', 'Ś', 'Š', 'Ş', 'Ș', 'Ț', "Ť", 'Þ', 'Ù', 'Ú', 'Û', 'Ü', 'Ǔ', 'Ũ', 'Ū', 'Ű', 'Ů',
     'Ŵ', 'Ý', 'Ŷ', 'Ÿ', 'Ź', 'Ž', 'Ż'
-]
+].map(char => char.normalize('NFC'))
 
 export const pairingLatin = [...baseUC, ...accentUC].flatMap((letter) => [letter, letter.toLowerCase()])
 export const basePairLatin = baseUC.flatMap((letter) => [letter, letter.toLowerCase()])
