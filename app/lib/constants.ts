@@ -308,8 +308,8 @@ const accentUC = ['À', 'Á', 'Â', 'Ä', 'Ǎ', 'Æ', 'Ã', 'Å', 'Ā',
     'Ŵ', 'Ý', 'Ŷ', 'Ÿ', 'Ź', 'Ž', 'Ż'
 ].map(char => char.normalize('NFC'))
 
-export const pairingLatin = [...baseUC, ...accentUC].flatMap((letter) => [letter, letter.toLowerCase()])
-export const basePairLatin = baseUC.flatMap((letter) => [letter, letter.toLowerCase()])
+export const pairingLatin = [...baseUC, ...accentUC].flatMap((letter) => [letter, letter.toLowerCase()]).map(char =>char.normalize('NFC'))
+export const basePairLatin = baseUC.flatMap((letter) => [letter, letter.toLowerCase()]).map
 export const digitChars = ['0', '2', '1', '3', '4', '5', '6', '7', '8', '9']
 export const punctuationChars = ['.', ',', '!', '?', '@', '#', '&', '~', '^', '-', '_', ':', ';', "'", '"', '(', ')', '[', ']', '{', '}', '/', '\\', '|', '=', '*', '%', '$', '<', '>']
 export const unpairedChars= [...digitChars, ...punctuationChars]
