@@ -87,7 +87,7 @@ describe('guideForCharacter', () => {
         expect(guideForCharacter('b')).toEqual(['ascender', 'baseline'])
     })
     it('descender letters aligned to x-height and descender', () => {
-        expect(guideForCharacter('g')).toEqual(['xHeight', 'baseline'])
+        expect(guideForCharacter('g')).toEqual(['xHeight', 'descender'])
     })
     it('numerical digits align similar to oppercase letters', () => {
         expect(guideForCharacter('5')).toEqual(['capHeight', 'baseline'])
