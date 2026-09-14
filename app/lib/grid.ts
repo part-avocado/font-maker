@@ -39,7 +39,7 @@ export const shear = (grid: Grid,shearF= 0.18): Grid => {
 }
 
 //begin copy
-export const glyphPatterns: Record<string, string[]> = {
+export const letterSeed: Record<string, string[]> = {
   A: ['01110', '10001', '10001', '11111', '10001', '10001', '10001'],
   B: ['11110', '10001', '10001', '11110', '10001', '10001', '11110'],
   C: ['01111', '10000', '10000', '10000', '10000', '10000', '01111'],
@@ -85,3 +85,26 @@ export const glyphPatterns: Record<string, string[]> = {
   '?': ['01110', '10001', '00010', '00100', '00100', '00000', '00100'],
 };
 //end copy
+
+export const seed = (letter:string, w= 8, h =10):Grid => {
+    const pattern = letterSeed[letter.toUpperCase()] || letterSeed['?']
+    return Array.from({length: h}, (_, y) => 
+    Array.from({length: w}, (_,x) => pattern[Math.min(6, Math.floor((y* 7) / h))][Math.min(4, Math.floor((x* 5) /w))] ==='1'))
+}
+
+export const missingLetterBox =(width:number, height: number): Grid => {
+    const insetx = Math.max(1, Math.round(width*0.12))
+    const insety = Math.max(1, Math.round(height* 0.08))
+    const left = insetx
+    const right = width - 1 -insetx
+    const top =insety
+    const bottom= height-1 -insety
+    return Array.from({length:height}, (_,y) =>
+        Array.from({length:width}, (_, x) => {
+            if (x<left || x >right || y<top ||y > bottom) return false;
+            return x ===left || x=== right || y=== top || y=== bottom;
+    }),
+);
+};
+
+export const defaultLetter = (width:number, height: number): Record<string, Grid> => Object.fromEntries(chars.map((chars) => [chars, blank(width,height)]))
