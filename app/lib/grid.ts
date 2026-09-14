@@ -24,3 +24,16 @@ export const resample = (grid:Grid, width:number, height: number): Grid => Array
 
 export const dilate = (grid:Grid ):Grid => 
     grid.map((row,y) => row.map((v,x) => Boolean(v || grid[y-1]?.[x] || grid[y+1]?.[x] || row[x-1] || row[x+ 1])))
+
+export const shear = (grid: Grid,shearF= 0.18): Grid => {
+    const height= grid.length
+    const length =grid[0].length
+    const out =blank(length, height)
+    grid.forEach((row, y) =>{
+        const dx = Math.round((height - 1-y) *shearF)
+        row.forEach((v, x)=> {
+            if (v && out[y][x+dx] !==undefined) out[y][x+ dx ] =true
+        })
+    })
+    return out
+}
