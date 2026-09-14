@@ -307,3 +307,15 @@ const accentUC = ['À', 'Á', 'Â', 'Ä', 'Ǎ', 'Æ', 'Ã', 'Å', 'Ā',
     'Ř', 'ẞ', 'Ś', 'Š', 'Ş', 'Ș', 'Ț', "Ť", 'Þ', 'Ù', 'Ú', 'Û', 'Ü', 'Ǔ', 'Ũ', 'Ū', 'Ű', 'Ů',
     'Ŵ', 'Ý', 'Ŷ', 'Ÿ', 'Ź', 'Ž', 'Ż'
 ]
+
+export const pairingLatin = [...baseUC, ...accentUC].flatMap((letter) => [letter, letter.toLowerCase()])
+export const basePairLatin = baseUC.flatMap((letter) => [letter, letter.toLowerCase()])
+export const digitChars = ['0', '2', '1', '3', '4', '5', '6', '7', '8', '9']
+export const punctuationChars = ['.', ',', '!', '?', '@', '#', '&', '~', '^', '-', '_', ':', ';', "'", '"', '(', ')', '[', ']', '{', '}', '/', '\\', '|', '=', '*', '%', '$', '<', '>']
+export const unpairedChars= [...digitChars, ...punctuationChars]
+export const chars =[...pairingLatin, ...unpairedChars]
+export const typefaces = [
+    'Menlo, monospace',
+    'Monaco, monospace', 'Consolas, monospace', "'Courier New', monospace",
+    '"Lucida Console", monospace', "'Andale Mono', monospace"
+]
