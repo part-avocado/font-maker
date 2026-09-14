@@ -37,3 +37,25 @@ export const shear = (grid: Grid,shearF= 0.18): Grid => {
     })
     return out
 }
+
+export const letterDefaults: Record<string, string[]> {
+    A:[
+        '01110',
+        '10001',
+        '10001',
+        '11111',
+        '10001',
+        '10001',
+        '10001',
+    ],
+    B: [
+        '11110',
+        '10001',
+        '10001',
+        '11110',
+        '10001',
+        '10001',
+        '11110',
+
+    ]
+};
