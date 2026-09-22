@@ -44,6 +44,6 @@ export function buildSvg(options: svgOptions): string {
     const viewportH = height * cellSize + padding * 2
     const guideMarkup = includeGuides? guideRows.map((row) => `path d="M${padding} ${padding + row * cellSize + 0.5}H${viewportW - padding}" stroke="#888" stroke-width="1" stroke-dasharray="3 3"/>`).join('') : ''
 
-    // TODO: i hate myself
-
+    // helpies
+    return `<?xml verision="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${viewportW}" height="${viewportH}" viewBox="0 0 ${viewportW} ${viewportH}" role="img" aria-label="${xmlEsc(character)} from ${xmlEsc(name)}">\n <title>${xmlEsc(name)} - ${xmlEsc(character)}</title>\n <rect width="100%" height="100%" fill="white"/>\n <g fill="black">${pixRect(grid, cellSize, padding).join('')}</g>\n <g fill="none">${guideMarkup}</g>\n </svg>\n`
 }
