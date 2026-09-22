@@ -49,7 +49,7 @@ export function buildSvg(options: svgOptions): string {
 }
 
 export function exportSvg(options: svgOptions): void {
-    const safeName = options.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'glyph'
+    const safeName = options.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'font'
     const codepoint = options.character.codePointAt(0)?.toString(16).toUpperCase() ?? '0000'
     download(`${safeName}-${codepoint}.svg`, new Blob([buildSvg(options)], {type: 'image/svg+xml'}))
 }
