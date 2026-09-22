@@ -1,5 +1,7 @@
 import { SquareRoundCorner } from "lucide-react";
 
+
+// TODO: FIX THIS CRAP
 export function sfntChecksum(bytes: Uint8Array): number {
     let sum =0;
     for (let i=0; i<bytes.length; i+=4) {
