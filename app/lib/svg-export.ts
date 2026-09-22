@@ -47,3 +47,9 @@ export function buildSvg(options: svgOptions): string {
     // helpies
     return `<?xml verision="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${viewportW}" height="${viewportH}" viewBox="0 0 ${viewportW} ${viewportH}" role="img" aria-label="${xmlEsc(character)} from ${xmlEsc(name)}">\n <title>${xmlEsc(name)} - ${xmlEsc(character)}</title>\n <rect width="100%" height="100%" fill="white"/>\n <g fill="black">${pixRect(grid, cellSize, padding).join('')}</g>\n <g fill="none">${guideMarkup}</g>\n </svg>\n`
 }
+
+export function exportSvg(options: svgOptions): void {
+    const safeName = options.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'glyph'
+    const codepoint = options.character.codePointAt(0)?.toString(16).toUpperCase() ?? '0000'
+    download(`${safeName}-${codepoint}.svg`, new Blob([buildSvg(options)], {type: 'image/svg+xml'}))
+}
