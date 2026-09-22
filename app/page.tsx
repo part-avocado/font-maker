@@ -11,3 +11,7 @@ import { Grid, blank, defaultLetter, dilate, resample,seed, shear, validGrid } f
 // ./hooks/*
 
 // ./components/*
+import { characterSidebar,  } from './components/characterSidebar';
+import { hints } from './components/helper';
+import { introductionPanel } from './components/intro';
+import { fontLib } from './components/fontLib';
