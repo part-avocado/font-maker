@@ -31,3 +31,19 @@ export function pixRectData(grid: Grid): pixRect[] {
     })
     return rects
 }
+
+export function pixRect(grid: Grid, cellSize: number, offset: number):string[] {
+    return pixRectData(grid).map(({x,y,width,height}) => `<rect x="${offset + x *cellSize}" y="${offset + y * cellSize}" width="${width*cellSize}" height="${height * cellSize}"/>`)
+}
+
+export function buildSvg(options: svgOptions): string {
+    const {character, grid, name, cellSize=16, padding=cellSize, includeGuides=false, guideRows=[]} = options
+    const width = grid[0]?.length ?? 1
+    const height = grid.length || 1
+    const viewportW = width * cellSize + padding *2
+    const viewportH = height * cellSize + padding * 2
+    const guideMarkup = includeGuides? guideRows.map((row) => `path d="M${padding} ${padding + row * cellSize + 0.5}H${viewportW - padding}" stroke="#888" stroke-width="1" stroke-dasharray="3 3"/>`).join('') : ''
+
+    // TODO: i hate myself
+
+}
