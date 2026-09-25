@@ -15,3 +15,8 @@ import { characterSidebar,  } from './components/characterSidebar';
 import { hints } from './components/helper';
 import { introductionPanel } from './components/intro';
 import { fontLib } from './components/fontLib';
+
+// welcome tour
+const TOUR_STEPS: TourStep[] = [
+
+];
