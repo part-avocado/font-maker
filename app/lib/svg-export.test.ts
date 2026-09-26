@@ -52,5 +52,12 @@ describe('exportSvg', () => {
         dlspy.mockRestore()
 
     })
+
+    it('has fallback to "font" when font name has no valid chars', () => {
+        const dlspy = vi.spyOn(dlMd, 'download').mockImplementation(() => {})
+        exportSvg({character: '!', grid: blank(2,2), name: '###'})
+        expect(dlspy.mock.calls[0][0]).toBe('font-21.svg')
+        dlspy.mockRestore()
+    })
 })
 
