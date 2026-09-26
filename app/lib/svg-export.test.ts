@@ -19,7 +19,7 @@ describe('pixRect', () => {
         const grid = filled(5,1,[0,0], [1,0], [2,0])
         const rects = pixRect(grid, 10,0)
         expect(rects).toHaveLength(1)
-        expect(rects[0]).toContain('width="30"')
+        expect(rects[0]).toContain('<rect x="20" y="0" width="10" height="10"/>')
     })
 
     it('creates separat rects for non-adj. lines in the same row', () => {
@@ -37,7 +37,20 @@ describe('pixRect', () => {
         const grid = filled(3,1,[1,0],[2,0])
         const rects = pixRect(grid, 10,0)
         expect(rects).toHaveLength(1);
-        expect(rects[0]).toContain('width="20"')
+        expect(rects[0]).toContain('<rect x="20" y="0" width="10" height="10"/>')
+    })
+})
+
+describe('exportSvg', () => {
+    it('downloads a slugified filename with correct mimee type', () => {
+        const dlspy = vi.spyOn(dlMd, 'download').mockImplementation(() => {})
+        exportSvg({character: 'A', grid: blank(2,2), name: 'My Cool font!'})
+        expect(dlspy).toHaveBeenCalledOnce()
+        const [fn, blob] = dlspy.mock.calls[0]
+        expect(fn).toBe('my-cool-font-41.svg')
+        expect(blob.type).toBe('image/svg+xml')
+        dlspy.mockRestore()
+
     })
 })
 
