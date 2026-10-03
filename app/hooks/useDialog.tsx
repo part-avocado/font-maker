@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useModalDialog } from "./useModalDialog";
 
+
 interface DialogOptions {
     confirmLabel?: string;
     cancelLabel?: string;   
